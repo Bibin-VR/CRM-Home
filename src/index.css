@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 84% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 85%;
+    --input: 0 0% 90%;
+    --ring: 0 84% 60%;
+    --radius: 0px;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 84% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 0 84% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .font-mono-data {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Cards ── */
+  .brutalist-card {
+    @apply bg-white border-2 border-[#1A1A1A] text-[#1A1A1A];
+    box-shadow: 4px 4px 0px 0px #1A1A1A;
+  }
+
+  .brutalist-card-hover {
+    @apply transition-all duration-150;
+  }
+  .brutalist-card-hover:hover {
+    box-shadow: 6px 6px 0px 0px #EF4444;
+    transform: translate(-2px, -2px);
+  }
+
+  /* ── Buttons ── */
+  .brutalist-btn {
+    @apply border-2 border-[#1A1A1A] bg-white text-[#1A1A1A] font-bold uppercase tracking-wider px-4 py-2 transition-all duration-150;
+    box-shadow: 3px 3px 0px 0px #1A1A1A;
+    border-radius: 0;
+  }
+  .brutalist-btn:hover {
+    @apply bg-[#EF4444] text-white border-[#EF4444];
+    box-shadow: 5px 5px 0px 0px #1A1A1A;
+    transform: translate(-2px, -2px);
+  }
+
+  .brutalist-btn-primary {
+    @apply border-2 border-[#1A1A1A] bg-[#EF4444] text-white font-bold uppercase tracking-wider px-4 py-2 transition-all duration-150;
+    box-shadow: 3px 3px 0px 0px #1A1A1A;
+    border-radius: 0;
+  }
+  .brutalist-btn-primary:hover {
+    @apply bg-[#DC2626];
+    box-shadow: 5px 5px 0px 0px #1A1A1A;
+    transform: translate(-2px, -2px);
+  }
+
+  /* ── Inputs ── */
+  .brutalist-input {
+    @apply bg-transparent border-b-2 border-[#1A1A1A] text-[#1A1A1A] px-0 py-2 w-full outline-none focus:border-[#EF4444] transition-colors;
+    border-radius: 0;
+  }
+  .brutalist-input::placeholder {
+    @apply text-[#9CA3AF];
+  }
+
+  /* ── Sidebar Items ── */
+  .brutalist-sidebar-item {
+    @apply block px-4 py-3 text-sm uppercase tracking-wider font-mono-data text-[#6B7280] transition-all duration-150 border-l-4 border-transparent;
+  }
+  .brutalist-sidebar-item:hover {
+    @apply bg-[#FEF2F2] text-[#1A1A1A] border-l-4 border-[#EF4444];
+  }
+  .brutalist-sidebar-item.active {
+    @apply bg-[#FEF2F2] text-[#EF4444] border-l-4 border-[#EF4444] font-bold;
+  }
+
+  /* ── Tables ── */
+  .brutalist-table {
+    @apply w-full;
+  }
+  .brutalist-table th {
+    @apply bg-[#F5F5F5] text-left px-4 py-3 text-xs uppercase tracking-wider font-mono-data text-[#1A1A1A] border-b-2 border-[#1A1A1A];
+  }
+  .brutalist-table td {
+    @apply px-4 py-3 text-sm border-b border-[#E5E5E5] font-mono-data text-[#374151];
+  }
+  .brutalist-table tr:nth-child(even) {
+    @apply bg-[#FAFAFA];
+  }
+  .brutalist-table tr:nth-child(odd) {
+    @apply bg-white;
+  }
+  .brutalist-table tr:hover {
+    @apply bg-[#FEF2F2];
+  }
+
+  /* ── Badges ── */
+  .brutalist-badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-mono-data font-bold uppercase tracking-wider border-2;
+    border-radius: 0;
+  }
+
+  /* Status badges — light background legible */
+  .status-OPERATIONAL { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-MAINTENANCE { @apply border-amber-500 text-amber-700 bg-amber-50; }
+  .status-BREAKDOWN { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-IDLE { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  .status-ACTIVE { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-INACTIVE { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  .status-PENDING { @apply border-amber-500 text-amber-700 bg-amber-50; }
+  .status-COMPLETED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-IN_PROGRESS { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-SCHEDULED { @apply border-violet-500 text-violet-700 bg-violet-50; }
+  .status-PLANNED { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  .status-ON_HOLD { @apply border-orange-500 text-orange-700 bg-orange-50; }
+  .status-CANCELLED { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-PASS { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-FAIL { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-REWORK { @apply border-orange-500 text-orange-700 bg-orange-50; }
+  .status-RECEIVED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-APPROVED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-ORDERED { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-DRAFT { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  .status-NEW { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-CLOSED_WON { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-CLOSED_LOST { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-LEAD { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-PROSPECT { @apply border-violet-500 text-violet-700 bg-violet-50; }
+  .status-HIGH { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-URGENT { @apply border-red-700 text-red-800 bg-red-50; }
+  .status-NORMAL { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-LOW { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  .status-SENT { @apply border-sky-500 text-sky-700 bg-sky-50; }
+  .status-ACCEPTED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
+  .status-REJECTED { @apply border-red-600 text-red-700 bg-red-50; }
+  .status-EXPIRED { @apply border-slate-400 text-slate-600 bg-slate-50; }
+
+  /* ── Scrollbar ── */
+  .brutalist-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .brutalist-scroll::-webkit-scrollbar-track {
+    background: #F5F5F5;
+  }
+  .brutalist-scroll::-webkit-scrollbar-thumb {
+    background: #EF4444;
+    border-radius: 0;
+  }
+  .brutalist-scroll::-webkit-scrollbar-thumb:hover {
+    background: #DC2626;
+  }
+}

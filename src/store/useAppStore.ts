@@ -56,8 +56,11 @@ export interface MenuItem {
   roles: UserRole[];
 }
 
+const ALL_ROLES: UserRole[] = ["CEO", "ADMIN", "PURCHASE", "PRODUCTION", "ELECTRICAL", "QUALITY", "MECHANICAL", "DESIGN", "SALES", "COASTING", "PROJECT_ENGINEER", "PLANT_HEAD"];
+
 export const MENU_ITEMS: MenuItem[] = [
-  { label: "Dashboard", path: "/dashboard", icon: "LayoutDashboard", roles: ["CEO", "ADMIN", "PURCHASE", "PRODUCTION", "ELECTRICAL", "QUALITY", "MECHANICAL", "DESIGN", "SALES", "COASTING", "PROJECT_ENGINEER", "PLANT_HEAD"] },
+  { label: "Dashboard", path: "/dashboard", icon: "LayoutDashboard", roles: ALL_ROLES },
+  { label: "Calendar", path: "/calendar", icon: "CalendarDays", roles: ALL_ROLES },
   { label: "Customers", path: "/customers", icon: "Users", roles: ["CEO", "ADMIN", "SALES", "COASTING", "PLANT_HEAD"] },
   { label: "Sales Leads", path: "/sales-leads", icon: "TrendingUp", roles: ["CEO", "SALES", "PLANT_HEAD"] },
   { label: "Quotations", path: "/quotations", icon: "FileText", roles: ["CEO", "SALES", "COASTING", "PLANT_HEAD"] },
@@ -72,4 +75,5 @@ export const MENU_ITEMS: MenuItem[] = [
   { label: "Projects", path: "/projects", icon: "FolderKanban", roles: ["CEO", "PROJECT_ENGINEER", "DESIGN", "PLANT_HEAD"] },
   { label: "Tasks", path: "/tasks", icon: "CheckSquare", roles: ["CEO", "PROJECT_ENGINEER", "DESIGN", "PRODUCTION", "PLANT_HEAD"] },
   { label: "Employees", path: "/employees", icon: "UserCog", roles: ["CEO", "ADMIN", "PLANT_HEAD"] },
+  { label: "Reports", path: "/reports", icon: "FileBarChart", roles: ["CEO", "ADMIN", "PLANT_HEAD", "COASTING"] },
 ];

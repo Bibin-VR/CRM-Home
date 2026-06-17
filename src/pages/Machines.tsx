@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { trpc } from "@/providers/trpc";
+import { useDataStore } from "@/data/store";
+import { useCan } from "@/data/permissions";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import DataTablePage from "@/components/shared/DataTablePage";
 import StatusBadge from "@/components/shared/StatusBadge";
+import { ExportButton, InlineStatus } from "@/components/shared/RowActions";
 import { Wrench } from "lucide-react";
+
+const STATUSES = ["OPERATIONAL", "MAINTENANCE", "BREAKDOWN", "IDLE"];
 
 export default function Machines() {
   const [page, setPage] = useState(1);
   const { data, isLoading, refetch } = trpc.crm.machines.list.useQuery({ page, limit: 20 });
+  const updateMachineStatus = useDataStore((s) => s.updateMachineStatus);
+  const canManage = useCan("machines");
 
   const columns = [
     { key: "machineCode", label: "Code" },
@@ -15,11 +22,7 @@ export default function Machines() {
     { key: "type", label: "Type" },
     { key: "location", label: "Location" },
     { key: "status", label: "Status", render: (v: string) => <StatusBadge status={v} /> },
-    {
-      key: "lastMaintenanceAt",
-      label: "Last Maint.",
-      render: (v: string) => v ? new Date(v).toLocaleDateString() : "-",
-    },
+    { key: "lastMaintenanceAt", label: "Last Maint.", render: (v: string) => v ? new Date(v).toLocaleDateString() : "-" },
     {
       key: "nextMaintenanceAt",
       label: "Next Maint.",
@@ -28,7 +31,7 @@ export default function Machines() {
         const date = new Date(v);
         const isOverdue = date < new Date() && row.status !== "MAINTENANCE";
         return (
-          <span className={isOverdue ? "text-[#F43F5E] font-bold" : ""}>
+          <span className={isOverdue ? "text-[#B3110F] font-bold" : ""}>
             {isOverdue && <Wrench className="w-3 h-3 inline mr-1" />}
             {date.toLocaleDateString()}
           </span>
@@ -50,6 +53,13 @@ export default function Machines() {
         onPageChange={setPage}
         loading={isLoading}
         onRefresh={refetch}
+        headerActions={<ExportButton filename="machines" columns={[
+          { key: "machineCode", label: "Code" }, { key: "name", label: "Name" },
+          { key: "type", label: "Type" }, { key: "location", label: "Location" }, { key: "status", label: "Status" },
+        ]} rows={data?.items || []} />}
+        rowActions={canManage ? (row: any) => (
+          <InlineStatus value={row.status} options={STATUSES} onChange={(v) => updateMachineStatus(row.id, v)} />
+        ) : undefined}
       />
     </DashboardLayout>
   );

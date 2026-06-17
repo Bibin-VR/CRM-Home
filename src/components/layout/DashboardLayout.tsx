@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { sidebarOpen } = useAppStore();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FBFAF7]">
       <Sidebar />
       <Header />
       <main

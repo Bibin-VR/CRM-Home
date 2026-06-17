@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router";
-import Login from "./pages/Login";
+import { Routes, Route, Navigate } from "react-router";
 import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers";
 import Products from "./pages/Products";
@@ -15,14 +14,19 @@ import Tasks from "./pages/Tasks";
 import Employees from "./pages/Employees";
 import Machines from "./pages/Machines";
 import Maintenance from "./pages/Maintenance";
+import Calendar from "./pages/Calendar";
+import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/login" element={<Login />} />
+      {/* Login is disabled — every entry point loads straight into the dashboard. */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/login" element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/calendar" element={<Calendar />} />
+      <Route path="/reports" element={<Reports />} />
       <Route path="/customers" element={<Customers />} />
       <Route path="/products" element={<Products />} />
       <Route path="/inventory" element={<InventoryPage />} />

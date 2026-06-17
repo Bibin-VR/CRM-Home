@@ -9,8 +9,8 @@ interface StatCardProps {
 }
 
 const accentMap = {
-  teal: { border: "border-[#EF4444]", bg: "bg-[#FEF2F2]", text: "text-[#EF4444]", shadow: "#EF4444" },
-  red: { border: "border-[#DC2626]", bg: "bg-[#FEF2F2]", text: "text-[#DC2626]", shadow: "#DC2626" },
+  teal: { border: "border-[#E61919]", bg: "bg-[#FDEBEB]", text: "text-[#E61919]", shadow: "#E61919" },
+  red: { border: "border-[#B3110F]", bg: "bg-[#FDEBEB]", text: "text-[#B3110F]", shadow: "#B3110F" },
   blue: { border: "border-[#3B82F6]", bg: "bg-[#EFF6FF]", text: "text-[#3B82F6]", shadow: "#3B82F6" },
   amber: { border: "border-[#F59E0B]", bg: "bg-[#FFFBEB]", text: "text-[#F59E0B]", shadow: "#F59E0B" },
 };
@@ -20,13 +20,13 @@ export default function StatCard({ title, value, subtitle, icon, accent = "teal"
 
   return (
     <div
-      className={`bg-white border-2 ${colors.border} p-5 brutalist-card-hover transition-all duration-150`}
-      style={{ boxShadow: `4px 4px 0px 0px #1A1A1A` }}
+      className={`bg-[#FBFAF7] border-2 ${colors.border} p-5 brutalist-card-hover transition-all duration-150`}
+      style={{ boxShadow: `4px 4px 0px 0px #0B0B0B` }}
     >
       <div className="flex items-start justify-between mb-3">
         <div className={`${colors.text}`}>{icon}</div>
         {subtitle && (
-          <span className="text-[10px] uppercase tracking-widest text-[#9CA3AF] font-mono-data">
+          <span className="text-[10px] uppercase tracking-widest text-[#8C8A80] font-mono-data">
             {subtitle}
           </span>
         )}
@@ -34,7 +34,7 @@ export default function StatCard({ title, value, subtitle, icon, accent = "teal"
       <div className={`text-3xl font-bold font-mono-data ${colors.text} mb-1`}>
         {value}
       </div>
-      <div className="text-xs uppercase tracking-wider text-[#6B7280] font-mono-data">
+      <div className="text-xs uppercase tracking-wider text-[#6B6A63] font-mono-data">
         {title}
       </div>
     </div>

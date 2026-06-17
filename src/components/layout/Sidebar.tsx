@@ -16,6 +16,8 @@ import {
   FolderKanban,
   CheckSquare,
   UserCog,
+  CalendarDays,
+  FileBarChart,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -36,6 +38,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FolderKanban,
   CheckSquare,
   UserCog,
+  CalendarDays,
+  FileBarChart,
 };
 
 export default function Sidebar() {
@@ -48,35 +52,35 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-full bg-white border-r-2 border-[#1A1A1A] transition-all duration-300 z-50 ${
+      className={`fixed left-0 top-0 h-full bg-[#FBFAF7] border-r-2 border-[#0B0B0B] transition-all duration-300 z-50 ${
         sidebarOpen ? "w-64" : "w-16"
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b-2 border-[#E5E5E5]">
+      <div className="flex items-center justify-between h-16 px-4 border-b-2 border-[#DAD7CE]">
         {sidebarOpen && (
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#EF4444] flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#E61919] flex items-center justify-center">
               <span className="text-white font-bold text-lg font-mono-data">IG</span>
             </div>
-            <span className="text-[#1A1A1A] font-bold text-sm uppercase tracking-wider">
+            <span className="text-[#0B0B0B] font-bold text-sm uppercase tracking-wider">
               IRONGRID
             </span>
           </Link>
         )}
         <button
           onClick={toggleSidebar}
-          className="text-[#6B7280] hover:text-[#EF4444] transition-colors"
+          className="text-[#6B6A63] hover:text-[#E61919] transition-colors"
         >
           {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
         </button>
       </div>
 
       {sidebarOpen && (
-        <div className="px-4 py-3 border-b-2 border-[#E5E5E5]">
-          <div className="text-[10px] uppercase tracking-widest text-[#9CA3AF] font-mono-data mb-1">
+        <div className="px-4 py-3 border-b-2 border-[#DAD7CE]">
+          <div className="text-[10px] uppercase tracking-widest text-[#8C8A80] font-mono-data mb-1">
             Current Role
           </div>
-          <div className="text-xs font-bold text-[#EF4444] uppercase tracking-wider font-mono-data">
+          <div className="text-xs font-bold text-[#E61919] uppercase tracking-wider font-mono-data">
             {ROLE_LABELS[selectedRole]}
           </div>
         </div>
@@ -103,8 +107,8 @@ export default function Sidebar() {
       </nav>
 
       {sidebarOpen && (
-        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t-2 border-[#E5E5E5]">
-          <div className="text-[9px] text-[#9CA3AF] font-mono-data uppercase tracking-widest">
+        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t-2 border-[#DAD7CE]">
+          <div className="text-[9px] text-[#8C8A80] font-mono-data uppercase tracking-widest">
             v2.4.1 // Industrial CRM
           </div>
         </div>

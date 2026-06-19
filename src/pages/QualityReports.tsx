@@ -37,7 +37,7 @@ export default function QualityReports() {
     { key: "qualityReport.inspectionType", label: "Type", render: (_v: any, row: any) => <StatusBadge status={row.qualityReport?.inspectionType || ""} /> },
     { key: "qualityReport.status", label: "Status", render: (_v: any, row: any) => <StatusBadge status={row.qualityReport?.status || ""} /> },
     { key: "qualityReport.defectCount", label: "Defects", render: (_v: any, row: any) => (
-      <span className={row.qualityReport?.defectCount > 0 ? "text-[#B3110F] font-bold" : "text-emerald-600"}>
+      <span className={row.qualityReport?.defectCount > 0 ? "text-[#9A6B00] font-bold" : "text-emerald-600"}>
         {row.qualityReport?.defectCount || 0}
       </span>
     )},

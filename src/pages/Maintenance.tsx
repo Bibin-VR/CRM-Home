@@ -35,13 +35,13 @@ export default function Maintenance() {
   return (
     <DashboardLayout>
       <div className="mb-4">
-        <label className="block text-[10px] uppercase tracking-[0.2em] text-[#6B6A63] font-mono-data mb-2">
+        <label className="block text-[10px] uppercase tracking-[0.2em] text-[#6B6B72] font-mono-data mb-2">
           Filter by Machine
         </label>
         <select
           value={machineId}
           onChange={(e) => setMachineId(Number(e.target.value))}
-          className="bg-[#FBFAF7] border-2 border-[#0B0B0B] text-[#0B0B0B] px-4 py-2 text-sm font-mono-data outline-none focus:border-[#E61919] max-w-xs shadow-[3px_3px_0px_0px_#0B0B0B]"
+          className="bg-[#FFFFFF] border border-black/10 text-[#1F1F22] px-4 py-2 text-sm font-mono-data outline-none focus:border-[#C28A00] max-w-xs shadow-lg"
           style={{ borderRadius: 0 }}
         >
           <option value={0}>All Machines</option>

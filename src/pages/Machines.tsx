@@ -31,7 +31,7 @@ export default function Machines() {
         const date = new Date(v);
         const isOverdue = date < new Date() && row.status !== "MAINTENANCE";
         return (
-          <span className={isOverdue ? "text-[#B3110F] font-bold" : ""}>
+          <span className={isOverdue ? "text-[#9A6B00] font-bold" : ""}>
             {isOverdue && <Wrench className="w-3 h-3 inline mr-1" />}
             {date.toLocaleDateString()}
           </span>

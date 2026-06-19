@@ -87,9 +87,9 @@ export default function Quotations() {
         <TextField label="Subtotal ($)" type="number" value={form.subtotal} onChange={(v) => setForm({ ...form, subtotal: v })} />
         <TextField label="Tax (%)" type="number" value={form.taxPct} onChange={(v) => setForm({ ...form, taxPct: v })} />
         <TextField label="Valid For (days)" type="number" value={form.validDays} onChange={(v) => setForm({ ...form, validDays: v })} />
-        <div className="border-2 border-[#0B0B0B] bg-[#EAE8E3] p-3 flex items-center justify-between">
-          <span className="text-[10px] uppercase tracking-widest font-mono-data text-[#6B6A63]">Calculated Total</span>
-          <span className="text-xl font-bold font-mono-data text-[#E61919]">${Number(total).toLocaleString()}</span>
+        <div className="border border-black/10 bg-[#F1EDE1] p-3 flex items-center justify-between">
+          <span className="text-[10px] uppercase tracking-widest font-mono-data text-[#6B6B72]">Calculated Total</span>
+          <span className="text-xl font-bold font-mono-data text-[#C28A00]">${Number(total).toLocaleString()}</span>
         </div>
       </Modal>
     </DashboardLayout>

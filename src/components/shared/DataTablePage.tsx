@@ -61,10 +61,10 @@ export default function DataTablePage({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#0B0B0B] uppercase tracking-wider font-mono-data">
+          <h1 className="text-3xl font-semibold text-[#1F1F22] tracking-tight font-display">
             {title}
           </h1>
-          <p className="text-xs text-[#6B6A63] font-mono-data mt-1 uppercase tracking-widest">
+          <p className="text-sm text-[#6B6B72] mt-1">
             {subtitle}
           </p>
         </div>
@@ -93,16 +93,15 @@ export default function DataTablePage({
 
       {/* Search */}
       {onSearch && (
-        <div className="brutalist-card p-4">
+        <div className="brutalist-card p-4 rounded-3xl">
           <div className="relative max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#E61919]" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#C28A00]" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => onSearch(e.target.value)}
               placeholder={searchPlaceholder}
-              className="w-full bg-[#FBFAF7] border-2 border-[#DAD7CE] text-[#0B0B0B] pl-10 pr-4 py-2 text-sm font-mono-data focus:border-[#E61919] outline-none transition-colors"
-              style={{ borderRadius: 0 }}
+              className="brutalist-input pl-11 text-sm"
             />
           </div>
         </div>
@@ -111,11 +110,11 @@ export default function DataTablePage({
       {/* Table */}
       <div className="brutalist-card overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-[#6B6A63] font-mono-data text-sm">
+          <div className="p-12 text-center text-[#6B6B72] font-mono-data text-sm">
             Loading data...
           </div>
         ) : data.length === 0 ? (
-          <div className="p-12 text-center text-[#6B6A63] font-mono-data text-sm">
+          <div className="p-12 text-center text-[#6B6B72] font-mono-data text-sm">
             No records found
           </div>
         ) : (
@@ -153,8 +152,8 @@ export default function DataTablePage({
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between px-4 py-3 border-t-2 border-[#DAD7CE] bg-[#EAE8E3]">
-            <div className="text-xs text-[#6B6A63] font-mono-data">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-black/5 bg-[#F1EDE1]">
+            <div className="text-xs text-[#6B6B72] font-mono-data">
               Showing {Math.min((page - 1) * limit + 1, total)} -{" "}
               {Math.min(page * limit, total)} of {total}
             </div>
@@ -166,7 +165,7 @@ export default function DataTablePage({
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-xs text-[#0B0B0B] font-mono-data px-3">
+              <span className="text-xs text-[#1F1F22] font-mono-data px-3">
                 {page} / {totalPages}
               </span>
               <button

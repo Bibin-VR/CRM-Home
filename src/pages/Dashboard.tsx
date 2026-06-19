@@ -37,18 +37,18 @@ const STATUS_COLORS: Record<string, string> = {
   COMPLETED: "#10B981",
   IN_PROGRESS: "#0EA5E9",
   SCHEDULED: "#7C3AED",
-  PLANNED: "#8C8A80",
+  PLANNED: "#9CA3AF",
   ON_HOLD: "#F59E0B",
-  CANCELLED: "#E61919",
+  CANCELLED: "#C28A00",
   PASS: "#10B981",
-  FAIL: "#E61919",
+  FAIL: "#C28A00",
   PENDING: "#F59E0B",
   REWORK: "#F97316",
   OPERATIONAL: "#10B981",
   MAINTENANCE: "#F59E0B",
-  BREAKDOWN: "#E61919",
-  IDLE: "#8C8A80",
-  DRAFT: "#8C8A80",
+  BREAKDOWN: "#C28A00",
+  IDLE: "#9CA3AF",
+  DRAFT: "#9CA3AF",
   APPROVED: "#10B981",
   ORDERED: "#0EA5E9",
   RECEIVED: "#059669",
@@ -64,7 +64,7 @@ function toDonut(m: Map<string, number>) {
   return Array.from(m.entries()).map(([name, value]) => ({
     name: name.replace(/_/g, " "),
     value,
-    color: STATUS_COLORS[name] ?? "#0B0B0B",
+    color: STATUS_COLORS[name] ?? "#1F1F22",
   }));
 }
 
@@ -155,7 +155,7 @@ function AnalyticsSection({ role }: { role: UserRole }) {
           { name: "Projects", value: s.projects.filter((p) => p.status === "COMPLETED").length },
           { name: "Deals Won", value: s.salesLeads.filter((l) => l.stage === "CLOSED_WON").length },
         ]}
-        color="#E61919"
+        color="#C28A00"
       />
     );
 
@@ -210,23 +210,23 @@ function UpcomingPanel({ role }: { role: UserRole }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Overdue warnings */}
-      <div className="brutalist-card p-5 border-l-4 border-l-[#B3110F]">
+      <div className="brutalist-card p-5 border-l-4 border-l-[#9A6B00]">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#B3110F] flex items-center gap-2">
+          <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#9A6B00] flex items-center gap-2">
             <CalendarX className="w-4 h-4" /> Overdue Warnings
           </h3>
-          <span className="brutalist-badge border-[#B3110F] text-[#B3110F] bg-red-50">{overdue.length}</span>
+          <span className="brutalist-badge border-[#9A6B00] text-[#9A6B00] bg-red-50">{overdue.length}</span>
         </div>
         <div className="space-y-2 max-h-72 overflow-y-auto brutalist-scroll">
           {overdue.length === 0 && (
-            <div className="text-xs font-mono-data text-[#8C8A80]">Nothing overdue. Good work.</div>
+            <div className="text-xs font-mono-data text-[#9CA3AF]">Nothing overdue. Good work.</div>
           )}
           {overdue.map((e) => (
             <div key={e.id} className="flex items-start gap-3 p-3 bg-red-50 border border-[#FCA5A5]">
-              <AlertTriangle className="w-4 h-4 text-[#B3110F] mt-0.5 flex-shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-[#9A6B00] mt-0.5 flex-shrink-0" />
               <div className="min-w-0">
-                <div className="text-xs text-[#0B0B0B] font-mono-data truncate">{e.title}</div>
-                <div className="text-[10px] text-[#B3110F] font-mono-data mt-0.5 uppercase tracking-wider">
+                <div className="text-xs text-[#1F1F22] font-mono-data truncate">{e.title}</div>
+                <div className="text-[10px] text-[#9A6B00] font-mono-data mt-0.5 uppercase tracking-wider">
                   {CATEGORY_LABELS[e.category]} • due {e.date.toLocaleDateString()}
                 </div>
               </div>
@@ -236,31 +236,31 @@ function UpcomingPanel({ role }: { role: UserRole }) {
       </div>
 
       {/* Upcoming reminders */}
-      <div className="brutalist-card p-5 border-l-4 border-l-[#E61919]">
+      <div className="brutalist-card p-5 border-l-4 border-l-[#C28A00]">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919] flex items-center gap-2">
+          <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00] flex items-center gap-2">
             <CalendarClock className="w-4 h-4" /> Upcoming (30 Days)
           </h3>
-          <Link to="/calendar" className="text-[10px] font-mono-data uppercase tracking-wider text-[#6B6A63] hover:text-[#E61919]">
+          <Link to="/calendar" className="text-[10px] font-mono-data uppercase tracking-wider text-[#6B6B72] hover:text-[#C28A00]">
             Open Calendar →
           </Link>
         </div>
         <div className="space-y-2 max-h-72 overflow-y-auto brutalist-scroll">
           {upcoming.length === 0 && (
-            <div className="text-xs font-mono-data text-[#8C8A80]">No deadlines in the next 30 days.</div>
+            <div className="text-xs font-mono-data text-[#9CA3AF]">No deadlines in the next 30 days.</div>
           )}
           {upcoming.map((e) => {
             const days = Math.ceil((e.date.getTime() - today.getTime()) / 86400000);
             return (
-              <div key={e.id} className="flex items-start gap-3 p-3 bg-[#EAE8E3] border border-[#DAD7CE]">
+              <div key={e.id} className="flex items-start gap-3 p-3 bg-[#F1EDE1] border border-[#E6E1D5]">
                 <div className="w-2 h-2 mt-1.5 flex-shrink-0" style={{ backgroundColor: CATEGORY_COLORS[e.category] }} />
                 <div className="min-w-0 flex-1">
-                  <div className="text-xs text-[#0B0B0B] font-mono-data truncate">{e.title}</div>
-                  <div className="text-[10px] text-[#6B6A63] font-mono-data mt-0.5 uppercase tracking-wider">
+                  <div className="text-xs text-[#1F1F22] font-mono-data truncate">{e.title}</div>
+                  <div className="text-[10px] text-[#6B6B72] font-mono-data mt-0.5 uppercase tracking-wider">
                     {CATEGORY_LABELS[e.category]} • {e.date.toLocaleDateString()}
                   </div>
                 </div>
-                <span className="text-[10px] font-mono-data font-bold text-[#E61919] whitespace-nowrap">
+                <span className="text-[10px] font-mono-data font-bold text-[#C28A00] whitespace-nowrap">
                   {days === 0 ? "TODAY" : `${days}D`}
                 </span>
               </div>
@@ -274,10 +274,10 @@ function UpcomingPanel({ role }: { role: UserRole }) {
 
 function SectionTitle({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="flex items-center gap-2 mb-4 mt-2">
-      <span className="text-[#E61919]">{icon}</span>
-      <h2 className="text-xs uppercase tracking-[0.3em] font-mono-data text-[#0B0B0B] font-bold">{label}</h2>
-      <div className="flex-1 h-px bg-[#0B0B0B] ml-2" />
+    <div className="flex items-center gap-2.5 mb-4 mt-2">
+      <span className="text-[#C28A00]">{icon}</span>
+      <h2 className="text-sm tracking-tight font-display font-semibold text-[#1F1F22]">{label}</h2>
+      <div className="flex-1 h-px bg-black/10 ml-2" />
     </div>
   );
 }
@@ -323,16 +323,16 @@ function DashboardContent() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="brutalist-card p-5">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919]">Recent Activity</h3>
-              <Activity className="w-5 h-5 text-[#8C8A80]" />
+              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00]">Recent Activity</h3>
+              <Activity className="w-5 h-5 text-[#9CA3AF]" />
             </div>
             <div className="space-y-3 max-h-64 overflow-y-auto brutalist-scroll">
               {recentActivity.map((activity) => (
-                <div key={activity.id} className="flex items-start gap-3 p-3 bg-[#EAE8E3] border border-[#DAD7CE]">
-                  <div className="w-2 h-2 bg-[#E61919] mt-1.5 flex-shrink-0" />
+                <div key={activity.id} className="flex items-start gap-3 p-3 bg-[#F1EDE1] border border-[#E6E1D5]">
+                  <div className="w-2 h-2 bg-[#C28A00] mt-1.5 flex-shrink-0" />
                   <div>
-                    <div className="text-xs text-[#0B0B0B] font-mono-data">{activity.action} // {activity.entityType}</div>
-                    <div className="text-[10px] text-[#6B6A63] font-mono-data mt-1">{activity.details}</div>
+                    <div className="text-xs text-[#1F1F22] font-mono-data">{activity.action} // {activity.entityType}</div>
+                    <div className="text-[10px] text-[#6B6B72] font-mono-data mt-1">{activity.details}</div>
                   </div>
                 </div>
               ))}
@@ -661,29 +661,29 @@ function DashboardContent() {
   return (
     <div className="space-y-8">
       {/* Personalized greeting */}
-      <div className="brutalist-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-[#E61919] border-2 border-[#0B0B0B] flex items-center justify-center text-white font-bold text-xl font-mono-data shadow-[3px_3px_0px_0px_#0B0B0B]">
+      <div className="brutalist-card p-7 rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+        <div className="flex items-center gap-5">
+          <div className="w-16 h-16 rounded-2xl bg-[#EAB308] flex items-center justify-center text-[#1F1F22] font-bold text-2xl font-display shadow-[0_8px_20px_-6px_rgba(234,179,8,0.6)]">
             {profile.initials}
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-[#0B0B0B] tracking-wide">
-              {greeting()}, {profile.name.split(" ")[0]}.
+            <h1 className="text-3xl font-light text-[#1F1F22] tracking-tight font-display">
+              {greeting()}, <span className="font-semibold">{profile.name.split(" ")[0]}</span>
             </h1>
-            <p className="text-xs text-[#6B6A63] font-mono-data mt-1">{profile.tagline}</p>
-            <div className="mt-2 flex items-center gap-2 flex-wrap">
-              <span className="brutalist-badge border-[#E61919] text-[#E61919] bg-[#FDEBEB]">{ROLE_LABELS[selectedRole]}</span>
-              <span className="brutalist-badge border-[#0B0B0B] text-[#0B0B0B] bg-[#FBFAF7]">{profile.department}</span>
+            <p className="text-sm text-[#6B6B72] mt-1">{profile.tagline}</p>
+            <div className="mt-3 flex items-center gap-2 flex-wrap">
+              <span className="brutalist-badge bg-[#EAB308]/15 text-[#9A6B00]">{ROLE_LABELS[selectedRole]}</span>
+              <span className="brutalist-badge bg-white/70 text-[#4b4b52] border-black/5">{profile.department}</span>
               {isElevated(selectedRole) && (
-                <span className="brutalist-badge border-[#0B0B0B] text-[#FBFAF7] bg-[#0B0B0B]">Full Authority</span>
+                <span className="brutalist-badge bg-[#1F1F22] text-white">Full Authority</span>
               )}
-              <span className="text-[10px] text-[#8C8A80] font-mono-data">{profile.email}</span>
+              <span className="text-xs text-[#9CA3AF]">{profile.email}</span>
             </div>
           </div>
         </div>
         <div className="text-right">
-          <div className="text-2xl font-bold font-mono-data text-[#0B0B0B]">{content.title}</div>
-          <div className="text-xs text-[#6B6A63] font-mono-data mt-1">
+          <div className="text-xl font-semibold font-display text-[#1F1F22]">{content.title}</div>
+          <div className="text-xs text-[#6B6B72] mt-1">
             {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
           </div>
         </div>
@@ -725,30 +725,30 @@ function SystemAlerts({ kpis }: { kpis: { machineBreakdown: number; lowStockItem
   return (
     <div className="brutalist-card p-5">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919]">System Alerts</h3>
-        <AlertTriangle className="w-5 h-5 text-[#B3110F]" />
+        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00]">System Alerts</h3>
+        <AlertTriangle className="w-5 h-5 text-[#9A6B00]" />
       </div>
       <div className="space-y-3">
         {kpis.machineBreakdown > 0 && (
-          <div className="flex items-center gap-3 p-3 border-l-4 border-[#B3110F] bg-red-50">
-            <AlertTriangle className="w-4 h-4 text-[#B3110F]" />
-            <div className="text-xs text-[#0B0B0B] font-mono-data">{kpis.machineBreakdown} machine(s) in BREAKDOWN status</div>
+          <div className="flex items-center gap-3 p-3 border-l-4 border-[#9A6B00] bg-red-50">
+            <AlertTriangle className="w-4 h-4 text-[#9A6B00]" />
+            <div className="text-xs text-[#1F1F22] font-mono-data">{kpis.machineBreakdown} machine(s) in BREAKDOWN status</div>
           </div>
         )}
         {kpis.lowStockItems > 0 && (
           <div className="flex items-center gap-3 p-3 border-l-4 border-[#F59E0B] bg-amber-50">
             <Package className="w-4 h-4 text-[#F59E0B]" />
-            <div className="text-xs text-[#0B0B0B] font-mono-data">{kpis.lowStockItems} item(s) below reorder level</div>
+            <div className="text-xs text-[#1F1F22] font-mono-data">{kpis.lowStockItems} item(s) below reorder level</div>
           </div>
         )}
         {kpis.overdueMaintenance > 0 && (
           <div className="flex items-center gap-3 p-3 border-l-4 border-[#3B82F6] bg-blue-50">
             <Clock className="w-4 h-4 text-[#3B82F6]" />
-            <div className="text-xs text-[#0B0B0B] font-mono-data">{kpis.overdueMaintenance} machine(s) overdue for maintenance</div>
+            <div className="text-xs text-[#1F1F22] font-mono-data">{kpis.overdueMaintenance} machine(s) overdue for maintenance</div>
           </div>
         )}
         {kpis.machineBreakdown === 0 && kpis.lowStockItems === 0 && kpis.overdueMaintenance === 0 && (
-          <div className="text-xs font-mono-data text-[#8C8A80]">All systems nominal.</div>
+          <div className="text-xs font-mono-data text-[#9CA3AF]">All systems nominal.</div>
         )}
       </div>
     </div>
@@ -759,21 +759,21 @@ function QuickLinksCard({ title, links, icon }: { title: string; links: { label:
   return (
     <div className="brutalist-card p-5">
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-[#E61919]">{icon}</span>
-        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919]">{title}</h3>
+        <span className="text-[#C28A00]">{icon}</span>
+        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00]">{title}</h3>
       </div>
       <div className="space-y-2">
         {links.map((link) => (
           <Link
             key={link.path + link.label}
             to={link.path}
-            className="flex items-center justify-between p-3 bg-[#EAE8E3] border border-[#DAD7CE] hover:border-[#E61919] hover:bg-[#FDEBEB] transition-all group"
+            className="flex items-center justify-between p-3 bg-[#F1EDE1] border border-[#E6E1D5] hover:border-[#C28A00] hover:bg-[#FBF3D5] transition-all group"
           >
             <div>
-              <div className="text-xs text-[#0B0B0B] font-mono-data group-hover:text-[#E61919] transition-colors">{link.label}</div>
-              <div className="text-[10px] text-[#8C8A80] font-mono-data mt-0.5">{link.desc}</div>
+              <div className="text-xs text-[#1F1F22] font-mono-data group-hover:text-[#C28A00] transition-colors">{link.label}</div>
+              <div className="text-[10px] text-[#9CA3AF] font-mono-data mt-0.5">{link.desc}</div>
             </div>
-            <ArrowRight className="w-4 h-4 text-[#8C8A80] group-hover:text-[#E61919] group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-4 h-4 text-[#9CA3AF] group-hover:text-[#C28A00] group-hover:translate-x-1 transition-all" />
           </Link>
         ))}
       </div>

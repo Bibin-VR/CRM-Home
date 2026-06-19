@@ -37,14 +37,14 @@ export function InlineStatus({
   disabled?: boolean;
 }) {
   if (disabled) {
-    return <span className="text-[10px] font-mono-data text-[#8C8A80] uppercase">read-only</span>;
+    return <span className="text-[10px] font-mono-data text-[#9CA3AF] uppercase">read-only</span>;
   }
   return (
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
       onClick={(e) => e.stopPropagation()}
-      className="bg-[#FBFAF7] border-2 border-[#0B0B0B] text-[#0B0B0B] text-[11px] font-mono-data uppercase px-2 py-1 outline-none focus:border-[#E61919] cursor-pointer"
+      className="bg-[#FFFFFF] border border-black/10 text-[#1F1F22] text-[11px] font-mono-data uppercase px-2 py-1 outline-none focus:border-[#C28A00] cursor-pointer"
       style={{ borderRadius: 0 }}
       title="Update status"
     >
@@ -74,7 +74,7 @@ export function RowButton({
         e.stopPropagation();
         onClick();
       }}
-      className="inline-flex items-center gap-1 border-2 border-[#0B0B0B] bg-[#FBFAF7] text-[#0B0B0B] text-[11px] font-mono-data uppercase tracking-wider px-2 py-1 hover:bg-[#E61919] hover:text-white hover:border-[#E61919] transition-colors"
+      className="inline-flex items-center gap-1 border border-black/10 bg-[#FFFFFF] text-[#1F1F22] text-[11px] font-mono-data uppercase tracking-wider px-2 py-1 hover:bg-[#C28A00] hover:text-white hover:border-[#C28A00] transition-colors"
       title={label}
     >
       {icon}

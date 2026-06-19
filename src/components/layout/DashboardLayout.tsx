@@ -7,12 +7,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { sidebarOpen } = useAppStore();
 
   return (
-    <div className="min-h-screen bg-[#FBFAF7]">
+    <div className="min-h-screen">
       <Sidebar />
       <Header />
       <main
-        className={`pt-16 min-h-screen transition-all duration-300 ${
-          sidebarOpen ? "ml-64" : "ml-16"
+        className={`pt-20 min-h-screen transition-all duration-300 ${
+          sidebarOpen ? "ml-64" : "ml-20"
         }`}
       >
         <div className="p-6">{children}</div>

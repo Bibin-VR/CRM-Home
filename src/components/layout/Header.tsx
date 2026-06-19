@@ -65,17 +65,17 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 right-0 h-16 bg-[#FBFAF7] border-b-2 border-[#0B0B0B] z-40 flex items-center justify-between px-6 transition-all duration-300 ${
-        sidebarOpen ? "left-64" : "left-16"
+      className={`glass-strong fixed top-3 right-3 h-14 rounded-full z-40 flex items-center justify-between pl-6 pr-3 transition-all duration-300 ${
+        sidebarOpen ? "left-64" : "left-20"
       }`}
     >
       <div className="flex items-center gap-4">
-        <h1 className="text-[#0B0B0B] font-bold text-lg uppercase tracking-wider font-mono-data">
-          IRONGRID // CONTROL
+        <h1 className="text-[#1F1F22] font-semibold text-base tracking-tight font-display">
+          Control Center
         </h1>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         {/* Role Switcher */}
         <div className="relative" ref={roleMenuRef}>
           <button
@@ -87,9 +87,9 @@ export default function Header() {
             <ChevronDown className="w-3 h-3" />
           </button>
           {showRoleMenu && (
-            <div className="absolute right-0 top-full mt-2 w-64 bg-[#FBFAF7] border-2 border-[#0B0B0B] shadow-[6px_6px_0px_0px_#0B0B0B] z-50">
-              <div className="px-3 py-2 border-b-2 border-[#DAD7CE]">
-                <span className="text-[10px] uppercase tracking-widest text-[#8C8A80] font-mono-data">
+            <div className="glass-strong absolute right-0 top-full mt-2 w-64 rounded-2xl overflow-hidden z-50">
+              <div className="px-3 py-2 border-b border-black/5">
+                <span className="text-[10px] uppercase tracking-widest text-[#9CA3AF] font-mono-data">
                   Switch Role
                 </span>
               </div>
@@ -103,10 +103,10 @@ export default function Header() {
                       setShowRoleMenu(false);
                       navigate("/dashboard");
                     }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-left text-xs uppercase font-mono-data tracking-wider transition-all ${
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-left text-xs font-medium transition-all ${
                       selectedRole === role
-                        ? "bg-[#E61919] text-white font-bold"
-                        : "text-[#6B6A63] hover:bg-[#FDEBEB] hover:text-[#0B0B0B]"
+                        ? "bg-[#EAB308] text-[#1F1F22] font-semibold"
+                        : "text-[#6B6B72] hover:bg-white/60 hover:text-[#1F1F22]"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -119,10 +119,10 @@ export default function Header() {
         </div>
 
         {/* Notifications */}
-        <button type="button" title="Notifications" className="relative text-[#6B6A63] hover:text-[#E61919] transition-colors">
+        <button type="button" title="Notifications" className="relative w-10 h-10 rounded-full flex items-center justify-center bg-white/60 text-[#6B6B72] hover:text-[#1F1F22] hover:bg-white transition-colors">
           <Bell className="w-5 h-5" />
           {unread > 0 && (
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#E61919] text-white text-[9px] font-bold flex items-center justify-center">
+            <span className="absolute top-0 right-0 min-w-[16px] h-4 px-1 rounded-full bg-[#EAB308] text-[#1F1F22] text-[9px] font-bold flex items-center justify-center">
               {unread}
             </span>
           )}
@@ -134,36 +134,36 @@ export default function Header() {
             type="button"
             title={profile.name}
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-2 text-[#6B6A63] hover:text-[#0B0B0B] transition-colors"
+            className="flex items-center gap-2 text-[#6B6B72] hover:text-[#1F1F22] transition-colors"
           >
             <div className="hidden md:block text-right">
-              <div className="text-xs font-bold font-mono-data text-[#0B0B0B] leading-tight">{profile.name}</div>
-              <div className="text-[9px] uppercase tracking-wider text-[#8C8A80] font-mono-data">{ROLE_LABELS[selectedRole]}</div>
+              <div className="text-xs font-bold font-mono-data text-[#1F1F22] leading-tight">{profile.name}</div>
+              <div className="text-[9px] uppercase tracking-wider text-[#9CA3AF] font-mono-data">{ROLE_LABELS[selectedRole]}</div>
             </div>
-            <div className="w-8 h-8 bg-[#E61919] border-2 border-[#0B0B0B] flex items-center justify-center text-white font-bold text-xs font-mono-data">
+            <div className="w-10 h-10 rounded-full bg-[#EAB308] flex items-center justify-center text-[#1F1F22] font-bold text-xs font-display shadow-[0_4px_12px_-4px_rgba(234,179,8,0.6)]">
               {profile.initials}
             </div>
           </button>
           {showUserMenu && (
-            <div className="absolute right-0 top-full mt-2 w-56 bg-[#FBFAF7] border-2 border-[#0B0B0B] shadow-[6px_6px_0px_0px_#0B0B0B] z-50">
-              <div className="px-3 py-3 border-b-2 border-[#DAD7CE]">
+            <div className="glass-strong absolute right-0 top-full mt-2 w-56 rounded-2xl overflow-hidden z-50">
+              <div className="px-3 py-3 border-b border-black/5">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-[#E61919] border-2 border-[#0B0B0B] flex items-center justify-center text-white font-bold text-xs font-mono-data">
+                  <div className="w-9 h-9 rounded-full bg-[#EAB308] flex items-center justify-center text-[#1F1F22] font-bold text-xs font-display">
                     {profile.initials}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-bold font-mono-data text-[#0B0B0B] truncate">{profile.name}</div>
-                    <div className="text-[10px] text-[#8C8A80] font-mono-data truncate">{profile.email}</div>
+                    <div className="text-xs font-bold font-mono-data text-[#1F1F22] truncate">{profile.name}</div>
+                    <div className="text-[10px] text-[#9CA3AF] font-mono-data truncate">{profile.email}</div>
                   </div>
                 </div>
               </div>
-              <div className="px-3 py-2 text-[10px] uppercase tracking-widest text-[#8C8A80] font-mono-data">
+              <div className="px-3 py-2 text-[10px] uppercase tracking-widest text-[#9CA3AF] font-mono-data">
                 {ROLE_LABELS[selectedRole]} • {profile.department}
               </div>
               <button
                 type="button"
                 onClick={() => { setShowUserMenu(false); navigate("/calendar"); }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#6B6A63] hover:bg-[#FDEBEB] hover:text-[#0B0B0B] uppercase font-mono-data tracking-wider transition-all"
+                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[#6B6B72] hover:bg-[#FBF3D5] hover:text-[#1F1F22] uppercase font-mono-data tracking-wider transition-all"
               >
                 <User className="w-4 h-4" />
                 My Calendar

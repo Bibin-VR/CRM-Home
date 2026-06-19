@@ -52,35 +52,35 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-full bg-[#FBFAF7] border-r-2 border-[#0B0B0B] transition-all duration-300 z-50 ${
-        sidebarOpen ? "w-64" : "w-16"
+      className={`glass-strong fixed left-3 top-3 bottom-3 rounded-[28px] transition-all duration-300 z-50 overflow-hidden ${
+        sidebarOpen ? "w-60" : "w-16"
       }`}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b-2 border-[#DAD7CE]">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-black/5">
         {sidebarOpen && (
-          <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#E61919] flex items-center justify-center">
-              <span className="text-white font-bold text-lg font-mono-data">IG</span>
+          <Link to="/dashboard" className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-[#EAB308] flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(234,179,8,0.6)]">
+              <span className="text-[#1F1F22] font-bold text-base font-display">IG</span>
             </div>
-            <span className="text-[#0B0B0B] font-bold text-sm uppercase tracking-wider">
-              IRONGRID
+            <span className="text-[#1F1F22] font-semibold text-base tracking-tight font-display">
+              IronGrid
             </span>
           </Link>
         )}
         <button
           onClick={toggleSidebar}
-          className="text-[#6B6A63] hover:text-[#E61919] transition-colors"
+          className="text-[#6B6B72] hover:text-[#1F1F22] transition-colors rounded-full p-1 hover:bg-white/60"
         >
           {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
         </button>
       </div>
 
       {sidebarOpen && (
-        <div className="px-4 py-3 border-b-2 border-[#DAD7CE]">
-          <div className="text-[10px] uppercase tracking-widest text-[#8C8A80] font-mono-data mb-1">
+        <div className="px-4 py-3 border-b border-black/5">
+          <div className="text-[10px] uppercase tracking-widest text-[#9CA3AF] font-mono-data mb-1">
             Current Role
           </div>
-          <div className="text-xs font-bold text-[#E61919] uppercase tracking-wider font-mono-data">
+          <div className="text-xs font-bold text-[#C28A00] uppercase tracking-wider font-mono-data">
             {ROLE_LABELS[selectedRole]}
           </div>
         </div>
@@ -107,8 +107,8 @@ export default function Sidebar() {
       </nav>
 
       {sidebarOpen && (
-        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t-2 border-[#DAD7CE]">
-          <div className="text-[9px] text-[#8C8A80] font-mono-data uppercase tracking-widest">
+        <div className="absolute bottom-0 left-0 right-0 px-4 py-3 border-t border-black/5">
+          <div className="text-[9px] text-[#9CA3AF] font-mono-data uppercase tracking-widest">
             v2.4.1 // Industrial CRM
           </div>
         </div>

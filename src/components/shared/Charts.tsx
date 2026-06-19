@@ -16,14 +16,14 @@ import {
 import type { ReactNode } from "react";
 
 const FONT = "'JetBrains Mono', monospace";
-const INK = "#0B0B0B";
-const RED = "#E61919";
+const INK = "#1F1F22";
+const RED = "#C28A00";
 
 function ChartShell({ title, icon, children, right }: { title: string; icon?: ReactNode; children: ReactNode; right?: ReactNode }) {
   return (
     <div className="brutalist-card p-5">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919] flex items-center gap-2">
+        <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00] flex items-center gap-2">
           {icon}
           {title}
         </h3>
@@ -45,7 +45,7 @@ const tooltipStyle = {
 };
 
 const axisProps = {
-  tick: { fontFamily: FONT, fontSize: 10, fill: "#6B6A63" },
+  tick: { fontFamily: FONT, fontSize: 10, fill: "#6B6B72" },
   stroke: INK,
 };
 
@@ -70,10 +70,10 @@ export function BarChartCard({
     <ChartShell title={title} icon={icon}>
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="2 2" stroke="#DAD7CE" vertical={false} />
+          <CartesianGrid strokeDasharray="2 2" stroke="#E6E1D5" vertical={false} />
           <XAxis dataKey={xKey} {...axisProps} interval={0} angle={0} />
           <YAxis {...axisProps} allowDecimals={false} />
-          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#FDEBEB" }} />
+          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#FBF3D5" }} />
           <Bar dataKey={dataKey} fill={color} stroke={INK} strokeWidth={2} radius={0} />
         </BarChart>
       </ResponsiveContainer>
@@ -100,10 +100,10 @@ export function MultiBarChartCard({
     <ChartShell title={title} icon={icon}>
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="2 2" stroke="#DAD7CE" vertical={false} />
+          <CartesianGrid strokeDasharray="2 2" stroke="#E6E1D5" vertical={false} />
           <XAxis dataKey={xKey} {...axisProps} interval={0} />
           <YAxis {...axisProps} allowDecimals={false} />
-          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#FDEBEB" }} />
+          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "#FBF3D5" }} />
           <Legend wrapperStyle={{ fontFamily: FONT, fontSize: 10, textTransform: "uppercase" }} />
           {series.map((s) => (
             <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} stroke={INK} strokeWidth={2} />
@@ -135,7 +135,7 @@ export function LineChartCard({
     <ChartShell title={title} icon={icon}>
       <ResponsiveContainer width="100%" height={height}>
         <LineChart data={data} margin={{ top: 8, right: 8, left: -16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="2 2" stroke="#DAD7CE" vertical={false} />
+          <CartesianGrid strokeDasharray="2 2" stroke="#E6E1D5" vertical={false} />
           <XAxis dataKey={xKey} {...axisProps} interval={0} />
           <YAxis {...axisProps} allowDecimals={false} />
           <Tooltip contentStyle={tooltipStyle} />
@@ -182,7 +182,7 @@ export function DonutChartCard({
           <Legend wrapperStyle={{ fontFamily: FONT, fontSize: 10, textTransform: "uppercase" }} />
         </PieChart>
       </ResponsiveContainer>
-      <div className="text-center -mt-2 text-[10px] font-mono-data uppercase tracking-widest text-[#8C8A80]">
+      <div className="text-center -mt-2 text-[10px] font-mono-data uppercase tracking-widest text-[#9CA3AF]">
         Total: {total}
       </div>
     </ChartShell>
@@ -205,22 +205,22 @@ export function ProgressList({
         {items.map((it) => (
           <div key={it.label}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs font-mono-data text-[#0B0B0B] truncate pr-2">{it.label}</span>
-              <span className="text-xs font-mono-data font-bold text-[#E61919]">{it.value}%</span>
+              <span className="text-xs font-mono-data text-[#1F1F22] truncate pr-2">{it.label}</span>
+              <span className="text-xs font-mono-data font-bold text-[#C28A00]">{it.value}%</span>
             </div>
-            <div className="w-full h-3 bg-[#EAE8E3] border-2 border-[#0B0B0B]">
+            <div className="w-full h-3 bg-[#F1EDE1] border border-black/10">
               <div
-                className="h-full bg-[#E61919] transition-all"
+                className="h-full bg-[#C28A00] transition-all"
                 style={{ width: `${Math.min(100, Math.max(0, it.value))}%` }}
               />
             </div>
             {it.sub && (
-              <div className="text-[10px] font-mono-data text-[#8C8A80] mt-0.5 uppercase tracking-wider">{it.sub}</div>
+              <div className="text-[10px] font-mono-data text-[#9CA3AF] mt-0.5 uppercase tracking-wider">{it.sub}</div>
             )}
           </div>
         ))}
         {items.length === 0 && (
-          <div className="text-xs font-mono-data text-[#8C8A80]">No data</div>
+          <div className="text-xs font-mono-data text-[#9CA3AF]">No data</div>
         )}
       </div>
     </ChartShell>

@@ -27,7 +27,7 @@ export default function InventoryPage() {
         const qty = row.inventory?.quantityAvailable || 0;
         const isLow = qty < 20;
         return (
-          <span className={`font-mono-data ${isLow ? "text-[#B3110F] font-bold" : "text-emerald-600"}`}>
+          <span className={`font-mono-data ${isLow ? "text-[#9A6B00] font-bold" : "text-emerald-600"}`}>
             {isLow && <AlertTriangle className="w-3 h-3 inline mr-1" />}
             {qty}
           </span>
@@ -41,7 +41,7 @@ export default function InventoryPage() {
       <div className="mb-4 flex items-center gap-4">
         <button
           onClick={() => setShowLowStock(!showLowStock)}
-          className={`brutalist-btn text-xs flex items-center gap-2 ${showLowStock ? "bg-[#E61919] text-white border-[#E61919]" : ""}`}
+          className={`brutalist-btn text-xs flex items-center gap-2 ${showLowStock ? "bg-[#C28A00] text-white border-[#C28A00]" : ""}`}
         >
           <AlertTriangle className="w-3 h-3" />
           {showLowStock ? "Show All" : "Low Stock Only"}

@@ -27,22 +27,22 @@ export function Modal({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-[#0B0B0B]/40" onClick={onClose} />
-      <div className="relative w-full max-w-lg bg-[#FBFAF7] border-2 border-[#0B0B0B] shadow-[8px_8px_0px_0px_#0B0B0B] max-h-[90vh] flex flex-col">
-        <div className="flex items-start justify-between px-5 py-4 border-b-2 border-[#0B0B0B] bg-[#EAE8E3]">
+      <div className="absolute inset-0 bg-[#1F1F22]/30 backdrop-blur-sm" onClick={onClose} />
+      <div className="glass-strong relative w-full max-w-lg rounded-3xl max-h-[90vh] flex flex-col overflow-hidden">
+        <div className="flex items-start justify-between px-6 py-5 border-b border-black/5">
           <div>
-            <h3 className="text-lg font-bold text-[#0B0B0B] uppercase tracking-wide">{title}</h3>
+            <h3 className="text-lg font-semibold text-[#1F1F22] tracking-tight font-display">{title}</h3>
             {subtitle && (
-              <p className="text-[10px] text-[#6B6A63] font-mono-data uppercase tracking-widest mt-0.5">{subtitle}</p>
+              <p className="text-xs text-[#6B6B72] mt-0.5">{subtitle}</p>
             )}
           </div>
-          <button type="button" onClick={onClose} title="Close" className="text-[#6B6A63] hover:text-[#E61919] transition-colors">
+          <button type="button" onClick={onClose} title="Close" className="w-8 h-8 rounded-full flex items-center justify-center text-[#6B6B72] hover:text-[#1F1F22] hover:bg-white/60 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
-        <div className="p-5 overflow-y-auto brutalist-scroll space-y-4">{children}</div>
+        <div className="p-6 overflow-y-auto brutalist-scroll space-y-4">{children}</div>
         {footer && (
-          <div className="px-5 py-4 border-t-2 border-[#0B0B0B] bg-[#EAE8E3] flex items-center justify-end gap-3">
+          <div className="px-6 py-4 border-t border-black/5 flex items-center justify-end gap-3">
             {footer}
           </div>
         )}
@@ -52,9 +52,9 @@ export function Modal({
 }
 
 const labelCls =
-  "block text-[10px] uppercase tracking-[0.2em] text-[#6B6A63] font-mono-data mb-1.5";
+  "block text-xs font-medium tracking-wide text-[#6B6B72] mb-1.5";
 const fieldCls =
-  "w-full bg-[#FBFAF7] border-2 border-[#0B0B0B] text-[#0B0B0B] px-3 py-2 text-sm font-mono-data outline-none focus:border-[#E61919] transition-colors";
+  "w-full bg-white/70 border border-black/10 rounded-xl text-[#1F1F22] px-3.5 py-2.5 text-sm outline-none focus:border-[#EAB308] focus:ring-2 focus:ring-[#EAB308]/20 transition-all";
 
 export function TextField({
   label,
@@ -78,7 +78,6 @@ export function TextField({
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         className={fieldCls}
-        style={{ borderRadius: 0 }}
       />
     </div>
   );
@@ -102,7 +101,6 @@ export function SelectField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={fieldCls}
-        style={{ borderRadius: 0 }}
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>
@@ -134,7 +132,6 @@ export function TextAreaField({
         onChange={(e) => onChange(e.target.value)}
         rows={3}
         className={fieldCls}
-        style={{ borderRadius: 0 }}
       />
     </div>
   );

@@ -58,8 +58,8 @@ export default function Projects() {
       label: "Progress",
       render: (_v: any, row: any) => (
         <div className="flex items-center gap-2">
-          <div className="w-20 h-2.5 bg-[#EAE8E3] border border-[#0B0B0B]">
-            <div className="h-full bg-[#E61919] transition-all" style={{ width: `${row.project?.progress || 0}%` }} />
+          <div className="w-20 h-2.5 bg-[#F1EDE1] border border-[#1F1F22]">
+            <div className="h-full bg-[#C28A00] transition-all" style={{ width: `${row.project?.progress || 0}%` }} />
           </div>
           <span className="text-xs font-mono-data">{row.project?.progress || 0}%</span>
         </div>

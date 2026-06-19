@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,34 +6,44 @@
 
 @layer base {
   :root {
-    --background: 60 11% 95%;
-    --foreground: 0 0% 4%;
-    --card: 48 20% 98%;
-    --card-foreground: 0 0% 4%;
-    --popover: 48 20% 98%;
-    --popover-foreground: 0 0% 4%;
-    --primary: 0 80% 50%;
-    --primary-foreground: 60 11% 95%;
-    --secondary: 43 16% 91%;
-    --secondary-foreground: 0 0% 4%;
-    --muted: 43 16% 91%;
-    --muted-foreground: 50 4% 40%;
-    --accent: 0 80% 50%;
-    --accent-foreground: 60 11% 95%;
-    --destructive: 0 84% 38%;
-    --destructive-foreground: 60 11% 95%;
-    --border: 43 16% 83%;
-    --input: 43 16% 83%;
-    --ring: 0 80% 50%;
-    --radius: 0px;
-    --sidebar-background: 48 20% 98%;
-    --sidebar-foreground: 0 0% 4%;
-    --sidebar-primary: 0 80% 50%;
-    --sidebar-primary-foreground: 60 11% 95%;
-    --sidebar-accent: 43 16% 91%;
-    --sidebar-accent-foreground: 0 0% 4%;
-    --sidebar-border: 0 0% 4%;
-    --sidebar-ring: 0 80% 50%;
+    /* ── Glassmorphism warm palette ── */
+    --background: 48 30% 96%;
+    --foreground: 240 6% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 12%;
+    --primary: 45 93% 47%;
+    --primary-foreground: 240 8% 12%;
+    --secondary: 45 40% 92%;
+    --secondary-foreground: 240 6% 12%;
+    --muted: 45 25% 92%;
+    --muted-foreground: 240 4% 45%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 240 8% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 45 20% 86%;
+    --input: 45 20% 86%;
+    --ring: 45 93% 47%;
+    --radius: 16px;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 6% 12%;
+    --sidebar-primary: 45 93% 47%;
+    --sidebar-primary-foreground: 240 8% 12%;
+    --sidebar-accent: 45 40% 92%;
+    --sidebar-accent-foreground: 240 6% 12%;
+    --sidebar-border: 45 20% 86%;
+    --sidebar-ring: 45 93% 47%;
+
+    /* Glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-strong: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 10px 30px -10px rgba(31, 38, 60, 0.18);
+    --gold: #EAB308;
+    --gold-deep: #C28A00;
+    --ink: #1F1F22;
   }
 }
 
@@ -45,145 +55,202 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Archivo', system-ui, sans-serif;
+    @apply text-foreground;
+    /* Warm light → gold gradient field, matching the reference */
+    background: linear-gradient(135deg, #ECECEF 0%, #F3EFE3 42%, #F7E59C 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer components {
+  /* The codebase tags "data" text with this class; in the glass system it is
+     simply a clean sans, no longer monospace. */
   .font-mono-data {
-    font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'tnum' 1;
   }
 
   .font-display {
-    font-family: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.01em;
   }
 
-  /* Headings adopt the heavy display face to match the reference identity. */
   h1, h2, h3 {
-    font-family: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
-  /* ── Cards ── */
+  /* ── Glass primitives ── */
+  .glass {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  .glass-strong {
+    background: var(--glass-bg-strong);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  .glass-dark {
+    background: rgba(28, 28, 31, 0.92);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 14px 40px -14px rgba(0, 0, 0, 0.45);
+  }
+
+  /* ── Cards (redefined: brutalist → glass) ── */
   .brutalist-card {
-    @apply bg-[#FBFAF7] border-2 border-[#0B0B0B] text-[#0B0B0B];
-    box-shadow: 4px 4px 0px 0px #0B0B0B;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    color: var(--ink);
   }
 
   .brutalist-card-hover {
-    @apply transition-all duration-150;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .brutalist-card-hover:hover {
-    box-shadow: 6px 6px 0px 0px #E61919;
-    transform: translate(-2px, -2px);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -12px rgba(31, 38, 60, 0.25);
   }
 
   /* ── Buttons ── */
   .brutalist-btn {
-    @apply border-2 border-[#0B0B0B] bg-[#FBFAF7] text-[#0B0B0B] font-bold uppercase tracking-wider px-4 py-2 transition-all duration-150;
-    box-shadow: 3px 3px 0px 0px #0B0B0B;
-    border-radius: 0;
+    @apply inline-flex items-center font-medium px-4 py-2 transition-all duration-200;
+    background: var(--glass-bg-strong);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    color: var(--ink);
+    border-radius: 9999px;
+    box-shadow: 0 4px 14px -6px rgba(31, 38, 60, 0.18);
   }
   .brutalist-btn:hover {
-    @apply bg-[#E61919] text-white border-[#E61919];
-    box-shadow: 5px 5px 0px 0px #0B0B0B;
-    transform: translate(-2px, -2px);
+    background: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px rgba(31, 38, 60, 0.25);
   }
 
   .brutalist-btn-primary {
-    @apply border-2 border-[#0B0B0B] bg-[#E61919] text-white font-bold uppercase tracking-wider px-4 py-2 transition-all duration-150;
-    box-shadow: 3px 3px 0px 0px #0B0B0B;
-    border-radius: 0;
+    @apply inline-flex items-center font-semibold px-4 py-2 transition-all duration-200;
+    background: var(--gold);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: var(--ink);
+    border-radius: 9999px;
+    box-shadow: 0 6px 18px -6px rgba(234, 179, 8, 0.55);
   }
   .brutalist-btn-primary:hover {
-    @apply bg-[#B3110F];
-    box-shadow: 5px 5px 0px 0px #0B0B0B;
-    transform: translate(-2px, -2px);
+    background: #d9a406;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -8px rgba(234, 179, 8, 0.65);
   }
 
   /* ── Inputs ── */
   .brutalist-input {
-    @apply bg-transparent border-b-2 border-[#0B0B0B] text-[#0B0B0B] px-0 py-2 w-full outline-none focus:border-[#E61919] transition-colors;
-    border-radius: 0;
+    @apply w-full px-4 py-2 outline-none transition-all;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--glass-border);
+    color: var(--ink);
+    border-radius: 9999px;
   }
   .brutalist-input::placeholder {
-    @apply text-[#8C8A80];
+    color: #9ca3af;
+  }
+  .brutalist-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.18);
   }
 
-  /* ── Sidebar Items ── */
+  /* ── Sidebar / nav items (pill style) ── */
   .brutalist-sidebar-item {
-    @apply block px-4 py-3 text-sm uppercase tracking-wider font-mono-data text-[#6B6A63] transition-all duration-150 border-l-4 border-transparent;
+    @apply flex items-center px-4 py-2.5 mx-2 my-0.5 text-sm font-medium transition-all duration-200;
+    color: #56565e;
+    border-radius: 9999px;
   }
   .brutalist-sidebar-item:hover {
-    @apply bg-[#FDEBEB] text-[#0B0B0B] border-l-4 border-[#E61919];
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--ink);
   }
   .brutalist-sidebar-item.active {
-    @apply bg-[#FDEBEB] text-[#E61919] border-l-4 border-[#E61919] font-bold;
+    background: var(--ink);
+    color: #ffffff;
+    box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.4);
   }
 
   /* ── Tables ── */
   .brutalist-table {
-    @apply w-full;
+    @apply w-full border-separate;
+    border-spacing: 0;
   }
   .brutalist-table th {
-    @apply bg-[#EAE8E3] text-left px-4 py-3 text-xs uppercase tracking-wider font-mono-data text-[#0B0B0B] border-b-2 border-[#0B0B0B];
+    @apply text-left px-4 py-3 text-xs font-semibold tracking-wide;
+    color: #6b6b72;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   }
   .brutalist-table td {
-    @apply px-4 py-3 text-sm border-b border-[#DAD7CE] font-mono-data text-[#2A2A26];
+    @apply px-4 py-3.5 text-sm;
+    color: #2c2c30;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
-  .brutalist-table tr:nth-child(even) {
-    @apply bg-[#F0EEE8];
-  }
-  .brutalist-table tr:nth-child(odd) {
-    @apply bg-white;
-  }
-  .brutalist-table tr:hover {
-    @apply bg-[#FDEBEB];
+  .brutalist-table tr:hover td {
+    background: rgba(234, 179, 8, 0.08);
   }
 
   /* ── Badges ── */
   .brutalist-badge {
-    @apply inline-flex items-center px-2 py-0.5 text-xs font-mono-data font-bold uppercase tracking-wider border-2;
-    border-radius: 0;
+    @apply inline-flex items-center px-2.5 py-0.5 text-[11px] font-semibold tracking-wide;
+    border: 1px solid transparent;
+    border-radius: 9999px;
   }
 
-  /* Status badges — light background legible */
-  .status-OPERATIONAL { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-MAINTENANCE { @apply border-amber-500 text-amber-700 bg-amber-50; }
-  .status-BREAKDOWN { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-IDLE { @apply border-slate-400 text-slate-600 bg-slate-50; }
-  .status-ACTIVE { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-INACTIVE { @apply border-slate-400 text-slate-600 bg-slate-50; }
-  .status-PENDING { @apply border-amber-500 text-amber-700 bg-amber-50; }
-  .status-COMPLETED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-IN_PROGRESS { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-SCHEDULED { @apply border-violet-500 text-violet-700 bg-violet-50; }
-  .status-PLANNED { @apply border-slate-400 text-slate-600 bg-slate-50; }
-  .status-ON_HOLD { @apply border-orange-500 text-orange-700 bg-orange-50; }
-  .status-CANCELLED { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-PASS { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-FAIL { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-REWORK { @apply border-orange-500 text-orange-700 bg-orange-50; }
-  .status-RECEIVED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-APPROVED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-ORDERED { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-DRAFT { @apply border-slate-400 text-slate-600 bg-slate-50; }
-  .status-NEW { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-CLOSED_WON { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-CLOSED_LOST { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-LEAD { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-PROSPECT { @apply border-violet-500 text-violet-700 bg-violet-50; }
-  .status-HIGH { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-URGENT { @apply border-red-700 text-red-800 bg-red-50; }
-  .status-NORMAL { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-LOW { @apply border-slate-400 text-slate-600 bg-slate-50; }
-  .status-SENT { @apply border-sky-500 text-sky-700 bg-sky-50; }
-  .status-ACCEPTED { @apply border-emerald-600 text-emerald-700 bg-emerald-50; }
-  .status-REJECTED { @apply border-red-600 text-red-700 bg-red-50; }
-  .status-EXPIRED { @apply border-slate-400 text-slate-600 bg-slate-50; }
+  /* Status badges — soft pills */
+  .status-OPERATIONAL { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-MAINTENANCE { @apply border-amber-200 text-amber-700 bg-amber-50; }
+  .status-BREAKDOWN { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-IDLE { @apply border-slate-200 text-slate-600 bg-slate-50; }
+  .status-ACTIVE { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-INACTIVE { @apply border-slate-200 text-slate-600 bg-slate-50; }
+  .status-PENDING { @apply border-amber-200 text-amber-700 bg-amber-50; }
+  .status-COMPLETED { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-IN_PROGRESS { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-SCHEDULED { @apply border-violet-200 text-violet-700 bg-violet-50; }
+  .status-PLANNED { @apply border-slate-200 text-slate-600 bg-slate-50; }
+  .status-ON_HOLD { @apply border-orange-200 text-orange-700 bg-orange-50; }
+  .status-CANCELLED { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-PASS { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-FAIL { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-REWORK { @apply border-orange-200 text-orange-700 bg-orange-50; }
+  .status-RECEIVED { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-APPROVED { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-ORDERED { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-DRAFT { @apply border-slate-200 text-slate-600 bg-slate-50; }
+  .status-NEW { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-CLOSED_WON { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-CLOSED_LOST { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-LEAD { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-PROSPECT { @apply border-violet-200 text-violet-700 bg-violet-50; }
+  .status-HIGH { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-URGENT { @apply border-red-300 text-red-800 bg-red-50; }
+  .status-NORMAL { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-LOW { @apply border-slate-200 text-slate-600 bg-slate-50; }
+  .status-SENT { @apply border-sky-200 text-sky-700 bg-sky-50; }
+  .status-ACCEPTED { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .status-REJECTED { @apply border-red-200 text-red-700 bg-red-50; }
+  .status-EXPIRED { @apply border-slate-200 text-slate-600 bg-slate-50; }
 
   /* ── Scrollbar ── */
   .brutalist-scroll::-webkit-scrollbar {
@@ -191,13 +258,13 @@
     height: 6px;
   }
   .brutalist-scroll::-webkit-scrollbar-track {
-    background: #EAE8E3;
+    background: transparent;
   }
   .brutalist-scroll::-webkit-scrollbar-thumb {
-    background: #E61919;
-    border-radius: 0;
+    background: rgba(234, 179, 8, 0.6);
+    border-radius: 9999px;
   }
   .brutalist-scroll::-webkit-scrollbar-thumb:hover {
-    background: #B3110F;
+    background: var(--gold-deep);
   }
 }

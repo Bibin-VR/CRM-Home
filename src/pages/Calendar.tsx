@@ -86,9 +86,9 @@ export default function Calendar() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-[#0B0B0B] uppercase tracking-wider font-mono-data">Calendar</h1>
-            <p className="text-xs text-[#6B6A63] font-mono-data mt-1 uppercase tracking-widest">
-              Reminders & Deadline Tracking
+            <h1 className="text-3xl font-semibold text-[#1F1F22] tracking-tight font-display">Calendar</h1>
+            <p className="text-sm text-[#6B6B72] mt-1">
+              Reminders &amp; deadline tracking
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -110,7 +110,7 @@ export default function Calendar() {
         {/* Category filters */}
         <div className="brutalist-card p-4">
           <div className="flex items-center gap-2 flex-wrap">
-            <Filter className="w-4 h-4 text-[#E61919]" />
+            <Filter className="w-4 h-4 text-[#C28A00]" />
             {ALL_CATEGORIES.map((c) => {
               const on = active.has(c);
               return (
@@ -135,16 +135,16 @@ export default function Calendar() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Month grid */}
           <div className="xl:col-span-2 brutalist-card overflow-hidden">
-            <div className="grid grid-cols-7 border-b-2 border-[#0B0B0B]">
+            <div className="grid grid-cols-7 border-b border-black/10">
               {WEEKDAYS.map((d) => (
-                <div key={d} className="px-2 py-2 text-center text-[10px] uppercase tracking-widest font-mono-data text-[#6B6A63] bg-[#EAE8E3] border-r border-[#DAD7CE] last:border-r-0">
+                <div key={d} className="px-2 py-2 text-center text-[10px] uppercase tracking-widest font-mono-data text-[#6B6B72] bg-[#F1EDE1] border-r border-[#E6E1D5] last:border-r-0">
                   {d}
                 </div>
               ))}
             </div>
             <div className="grid grid-cols-7">
               {grid.map((day, i) => {
-                if (!day) return <div key={i} className="min-h-[92px] border-r border-b border-[#DAD7CE] bg-[#F0EEE8]" />;
+                if (!day) return <div key={i} className="min-h-[92px] border-r border-b border-[#E6E1D5] bg-[#F4F0E6]" />;
                 const dayEvents = eventsFor(day);
                 const isToday = sameDay(day, today);
                 const isSelected = selected && sameDay(day, selected);
@@ -153,33 +153,33 @@ export default function Calendar() {
                   <button
                     key={i}
                     onClick={() => setSelected(day)}
-                    className={`min-h-[92px] text-left p-1.5 border-r border-b border-[#DAD7CE] transition-colors relative ${
-                      isSelected ? "bg-[#FDEBEB]" : "bg-[#FBFAF7] hover:bg-[#F0EEE8]"
+                    className={`min-h-[92px] text-left p-1.5 border-r border-b border-[#E6E1D5] transition-colors relative ${
+                      isSelected ? "bg-[#FBF3D5]" : "bg-[#FFFFFF] hover:bg-[#F4F0E6]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <span
                         className={`text-xs font-mono-data inline-flex items-center justify-center w-6 h-6 ${
-                          isToday ? "bg-[#E61919] text-white font-bold" : "text-[#0B0B0B]"
+                          isToday ? "bg-[#C28A00] text-white font-bold" : "text-[#1F1F22]"
                         }`}
                       >
                         {day.getDate()}
                       </span>
-                      {hasOverdue && <AlertTriangle className="w-3 h-3 text-[#B3110F]" />}
+                      {hasOverdue && <AlertTriangle className="w-3 h-3 text-[#9A6B00]" />}
                     </div>
                     <div className="mt-1 space-y-0.5">
                       {dayEvents.slice(0, 3).map((e) => (
                         <div
                           key={e.id}
                           className="text-[9px] font-mono-data px-1 py-0.5 truncate text-white"
-                          style={{ backgroundColor: e.overdue ? "#B3110F" : CATEGORY_COLORS[e.category] }}
+                          style={{ backgroundColor: e.overdue ? "#9A6B00" : CATEGORY_COLORS[e.category] }}
                           title={e.title}
                         >
                           {e.title}
                         </div>
                       ))}
                       {dayEvents.length > 3 && (
-                        <div className="text-[9px] font-mono-data text-[#6B6A63]">+{dayEvents.length - 3} more</div>
+                        <div className="text-[9px] font-mono-data text-[#6B6B72]">+{dayEvents.length - 3} more</div>
                       )}
                     </div>
                   </button>
@@ -191,12 +191,12 @@ export default function Calendar() {
           {/* Side panel: selected day + agenda */}
           <div className="space-y-6">
             <div className="brutalist-card p-5">
-              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919] mb-3">
+              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00] mb-3">
                 {selected ? selected.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" }) : "Select a day"}
               </h3>
               <div className="space-y-2 max-h-56 overflow-y-auto brutalist-scroll">
                 {selectedEvents.length === 0 && (
-                  <div className="text-xs font-mono-data text-[#8C8A80]">No events on this day.</div>
+                  <div className="text-xs font-mono-data text-[#9CA3AF]">No events on this day.</div>
                 )}
                 {selectedEvents.map((e) => (
                   <EventRow key={e.id} e={e} />
@@ -204,27 +204,27 @@ export default function Calendar() {
               </div>
             </div>
 
-            <div className="brutalist-card p-5 border-l-4 border-l-[#B3110F]">
+            <div className="brutalist-card p-5 border-l-4 border-l-[#9A6B00]">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#B3110F] flex items-center gap-2">
+                <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#9A6B00] flex items-center gap-2">
                   <CalendarX className="w-4 h-4" /> Overdue
                 </h3>
-                <span className="brutalist-badge border-[#B3110F] text-[#B3110F] bg-red-50">{overdue.length}</span>
+                <span className="brutalist-badge border-[#9A6B00] text-[#9A6B00] bg-red-50">{overdue.length}</span>
               </div>
               <div className="space-y-2 max-h-48 overflow-y-auto brutalist-scroll">
-                {overdue.length === 0 && <div className="text-xs font-mono-data text-[#8C8A80]">Nothing overdue.</div>}
+                {overdue.length === 0 && <div className="text-xs font-mono-data text-[#9CA3AF]">Nothing overdue.</div>}
                 {overdue.map((e) => (
                   <EventRow key={e.id} e={e} />
                 ))}
               </div>
             </div>
 
-            <div className="brutalist-card p-5 border-l-4 border-l-[#E61919]">
-              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919] flex items-center gap-2 mb-3">
+            <div className="brutalist-card p-5 border-l-4 border-l-[#C28A00]">
+              <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00] flex items-center gap-2 mb-3">
                 <CalendarClock className="w-4 h-4" /> Next 45 Days
               </h3>
               <div className="space-y-2 max-h-64 overflow-y-auto brutalist-scroll">
-                {upcoming.length === 0 && <div className="text-xs font-mono-data text-[#8C8A80]">No upcoming deadlines.</div>}
+                {upcoming.length === 0 && <div className="text-xs font-mono-data text-[#9CA3AF]">No upcoming deadlines.</div>}
                 {upcoming.map((e) => (
                   <EventRow key={e.id} e={e} showDate />
                 ))}
@@ -240,12 +240,12 @@ export default function Calendar() {
 function EventRow({ e, showDate }: { e: CalendarEvent; showDate?: boolean }) {
   return (
     <div
-      className={`flex items-start gap-2 p-2 border ${e.overdue ? "bg-red-50 border-[#FCA5A5]" : "bg-[#EAE8E3] border-[#DAD7CE]"}`}
+      className={`flex items-start gap-2 p-2 border ${e.overdue ? "bg-red-50 border-[#FCA5A5]" : "bg-[#F1EDE1] border-[#E6E1D5]"}`}
     >
-      <div className="w-2 h-2 mt-1.5 flex-shrink-0" style={{ backgroundColor: e.overdue ? "#B3110F" : CATEGORY_COLORS[e.category] }} />
+      <div className="w-2 h-2 mt-1.5 flex-shrink-0" style={{ backgroundColor: e.overdue ? "#9A6B00" : CATEGORY_COLORS[e.category] }} />
       <div className="min-w-0 flex-1">
-        <div className="text-xs text-[#0B0B0B] font-mono-data truncate">{e.title}</div>
-        <div className="text-[10px] text-[#6B6A63] font-mono-data mt-0.5 uppercase tracking-wider">
+        <div className="text-xs text-[#1F1F22] font-mono-data truncate">{e.title}</div>
+        <div className="text-[10px] text-[#6B6B72] font-mono-data mt-0.5 uppercase tracking-wider">
           {CATEGORY_LABELS[e.category]}
           {showDate ? ` • ${e.date.toLocaleDateString()}` : ""}
           {e.done ? " • done" : ""}

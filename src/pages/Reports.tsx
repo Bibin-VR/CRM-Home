@@ -18,8 +18,8 @@ import {
 } from "lucide-react";
 
 const STATUS_COLORS: Record<string, string> = {
-  COMPLETED: "#10B981", IN_PROGRESS: "#0EA5E9", SCHEDULED: "#7C3AED", PLANNED: "#8C8A80",
-  ON_HOLD: "#F59E0B", CANCELLED: "#E61919", PASS: "#10B981", FAIL: "#E61919", PENDING: "#F59E0B", REWORK: "#F97316",
+  COMPLETED: "#10B981", IN_PROGRESS: "#0EA5E9", SCHEDULED: "#7C3AED", PLANNED: "#9CA3AF",
+  ON_HOLD: "#F59E0B", CANCELLED: "#C28A00", PASS: "#10B981", FAIL: "#C28A00", PENDING: "#F59E0B", REWORK: "#F97316",
 };
 
 function num(v: string | null) { return Number(v || 0); }
@@ -63,10 +63,10 @@ export default function Reports() {
     <DashboardLayout>
       <div className="space-y-8">
         <div className="flex items-center gap-3">
-          <FileBarChart className="w-6 h-6 text-[#E61919]" />
+          <FileBarChart className="w-6 h-6 text-[#C28A00]" />
           <div>
-            <h1 className="text-2xl font-bold text-[#0B0B0B] uppercase tracking-wider font-mono-data">Reports</h1>
-            <p className="text-xs text-[#6B6A63] font-mono-data mt-0.5 uppercase tracking-widest">Analytics & Data Exports</p>
+            <h1 className="text-3xl font-semibold text-[#1F1F22] tracking-tight font-display">Reports</h1>
+            <p className="text-sm text-[#6B6B72] mt-0.5">Analytics &amp; data exports</p>
           </div>
         </div>
 
@@ -97,15 +97,15 @@ export default function Reports() {
             icon={<PieChart className="w-4 h-4" />}
             data={Array.from(s.productionOrders.reduce((m, p) => {
               m.set(p.status, (m.get(p.status) ?? 0) + 1); return m;
-            }, new Map<string, number>())).map(([name, value]) => ({ name: name.replace(/_/g, " "), value, color: STATUS_COLORS[name] ?? "#0B0B0B" }))}
+            }, new Map<string, number>())).map(([name, value]) => ({ name: name.replace(/_/g, " "), value, color: STATUS_COLORS[name] ?? "#1F1F22" }))}
           />
         </div>
 
         {/* Export center */}
         <div className="brutalist-card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <Download className="w-4 h-4 text-[#E61919]" />
-            <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#E61919]">Generate Reports — Export to CSV</h3>
+            <Download className="w-4 h-4 text-[#C28A00]" />
+            <h3 className="text-sm uppercase tracking-wider font-mono-data text-[#C28A00]">Generate Reports — Export to CSV</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {datasets.map((d) => (
@@ -113,11 +113,11 @@ export default function Reports() {
                 key={d.file}
                 type="button"
                 onClick={() => exportCsv(d.file, d.columns, d.rows as Record<string, unknown>[])}
-                className="flex items-center justify-between p-3 bg-[#EAE8E3] border-2 border-[#0B0B0B] hover:bg-[#E61919] hover:text-white transition-colors group"
+                className="flex items-center justify-between p-3 bg-[#F1EDE1] border border-black/10 hover:bg-[#C28A00] hover:text-white transition-colors group"
               >
                 <div className="text-left">
                   <div className="text-xs font-bold font-mono-data uppercase tracking-wider">{d.label}</div>
-                  <div className="text-[10px] font-mono-data text-[#6B6A63] group-hover:text-white/80">{d.rows.length} records</div>
+                  <div className="text-[10px] font-mono-data text-[#6B6B72] group-hover:text-white/80">{d.rows.length} records</div>
                 </div>
                 <Download className="w-4 h-4" />
               </button>

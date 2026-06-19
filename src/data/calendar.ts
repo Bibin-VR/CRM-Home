@@ -32,13 +32,13 @@ export const CATEGORY_LABELS: Record<EventCategory, string> = {
 };
 
 export const CATEGORY_COLORS: Record<EventCategory, string> = {
-  task: "#E61919",
+  task: "#C28A00",
   project: "#7C3AED",
   po: "#0EA5E9",
   maintenance: "#F59E0B",
   quotation: "#10B981",
   sales: "#EC4899",
-  production: "#0B0B0B",
+  production: "#1F1F22",
 };
 
 function startOfToday(): Date {
